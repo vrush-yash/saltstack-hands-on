@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  saltmaster:
+    image: vrushyash/saltmaster:v1
+    restart: always
+    networks:
+            saltnetwork:
+                    aliases:
+                            - saltmaster
+                            - saltmaster.learning.com
+    
+  saltminion1:
+    image: vrushyash/saltminion:v1
+    restart: always
+    networks:
+            saltnetwork:
+                    aliases:
+                            - saltminion1
+                            - saltminion1.learning.com
+
+  saltminion2:
+    image: vrushyash/saltminion:v1
+    restart: always
+    networks:
+            saltnetwork:
+                    aliases:
+                            - saltminion2
+                            - saltminion2.learning.com
+
+
+
+networks:
+        saltnetwork:
+
