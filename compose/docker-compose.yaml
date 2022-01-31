@@ -2,34 +2,46 @@ version: "3.7"
 
 services:
   saltmaster:
-    image: vrushyash/saltmaster:v1
+    build:
+            context: ../saltmaster
+            args:
+                    salt_repo_url: "https://archive.repo.saltproject.io/yum/redhat/7/x86_64/archive/3000.3.repo"
+    image: vrushyash/saltmaster:v2
     restart: always
     networks:
-            saltnetwork:
+            saltnetworkv2:
                     aliases:
                             - saltmaster
-                            - saltmaster.learning.com
+                            - saltmaster.learningv2.com
     
   saltminion1:
-    image: vrushyash/saltminion:v1
+    build:
+            context: ../saltminion
+            args:
+                    salt_repo_url: "https://archive.repo.saltproject.io/yum/redhat/7/x86_64/archive/3000.3.repo"
+    image: vrushyash/saltminion:v2
     restart: always
     networks:
-            saltnetwork:
+            saltnetworkv2:
                     aliases:
                             - saltminion1
-                            - saltminion1.learning.com
+                            - saltminion1.learningv2.com
 
   saltminion2:
-    image: vrushyash/saltminion:v1
+    build:
+            context: ../saltminion
+            args:
+                    salt_repo_url: "https://archive.repo.saltproject.io/yum/redhat/7/x86_64/archive/3000.3.repo"
+    image: vrushyash/saltminion:v2
     restart: always
     networks:
-            saltnetwork:
+            saltnetworkv2:
                     aliases:
                             - saltminion2
-                            - saltminion2.learning.com
+                            - saltminion2.learningv2.com
 
 
 
 networks:
-        saltnetwork:
+        saltnetworkv2:
 

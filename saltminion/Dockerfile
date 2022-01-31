@@ -1,6 +1,7 @@
-FROM centos:latest
+FROM centos:centos7
+ARG salt_repo_url
 RUN yum update -y && \
-    yum install https://repo.saltstack.com/yum/redhat/salt-repo-2019.2.el7.noarch.rpm -y && \
+    curl ${salt_repo_url} | tee /etc/yum.repos.d/salt.repo && \
     yum clean expire-cache && \
     yum install salt-minion -y && \
     yum clean all && \
